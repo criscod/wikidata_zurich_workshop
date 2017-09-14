@@ -1,0 +1,21 @@
+load data infile '/home/cristina/data/gz/contributors_wikidata1.csv’
+into table contributors
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY  '“'
+ESCAPED BY ‘\\’
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+SELECT revContributor,revId,revTimestamp, extract(year from revTimestamp), extract(month from revTimestamp),extract(day from revTimestamp), revPage,actiontype, SUM(is_new_session) OVER (PARTITION BY revContributor ORDER BY revTimestamp) AS user_session_id 
+FROM (SELECT *,  CASE WHEN TIMESTAMPDIFF(second,revTimestamp,lastEdit) <= (-14902)
+                      OR lastEdit IS NULL
+                    THEN 1 ELSE 0 END AS is_new_session
+          FROM ( SELECT *,LAG(revTimestamp) OVER
+                          (PARTITION BY revContributor ORDER BY revTimestamp)
+                          AS lastEdit
+                  FROM revisions2notools
+               ) as last			   
+       ) as final 
+	   INTO OUTFILE '/storage/data/wikidata/sqlresults/sessions_alldata_notools_1111.csv';
