@@ -207,63 +207,10 @@ public class WikidataPageHistoryReader extends DefaultHandler {
 
 
 
-        /*
-        * GZIPInputStream in = null;
+       
 
 
         try {
-            in = new GZIPInputStream(new FileInputStream(this.filePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-
-
-
-        try {
-
-            /*
-            pagesFile = new File(workingDirForFileName + "/src/main/resources/pages_" + localNameOfXMLFile + ".csv");
-            Files.write("\"pageTitle\",\"pageNs\",\"pageId\",\"pageRedirect\",\"pageRestrictions\",\"pageDiscussion\"", pagesFile, Charsets.UTF_8);
-            Files.append(ls, pagesFile, Charsets.UTF_8);
-            revisionsFile = new File(workingDirForFileName + "/src/main/resources/revisions_" + localNameOfXMLFile + ".csv");
-            Files.write("\"revId\",\"revParentid\",\"revTimestamp\",\"revMinor\",\"revComment\",\"revText\",\"revSha1\",\"revModel\",\"revFormat\",\"revContributor\",\"revPage\"", revisionsFile, Charsets.UTF_8);
-            Files.append(ls, revisionsFile, Charsets.UTF_8);
-            uploadsFile = new File(workingDirForFileName + "/src/main/resources/uploads_" + localNameOfXMLFile + ".csv");
-            Files.write("\"upTimestamp\",\"upComment\",\"upFileName\",\"upSrc\",\"upSize\",\"upPage\",\"upContributor\"", uploadsFile, Charsets.UTF_8);
-            Files.append(ls, uploadsFile, Charsets.UTF_8);
-            contributorsFile = new File(workingDirForFileName + "/src/main/resources/contributors_" + localNameOfXMLFile + ".csv");
-            Files.append(ls, contributorsFile, Charsets.UTF_8);
-            */
-
-            // (for all) pagesFile = new File("E:/wikidata_data/pages_" + localNameOfXMLFile + ".csv");
-
-
-
-
-
-            /*
-            workingDirForFileName = "/data/ubuntu";
-            pagesFile = new File(workingDirForFileName+"/dumps.wikimedia.org/wikidatawiki/20160701/pages_" + localNameOfXMLFile + ".csv");
-            //Files.write("\"pageTitle\",\"pageNs\",\"pageId\",\"pageRedirect\",\"pageRestrictions\",\"pageDiscussion\"", pagesFile, Charsets.UTF_8);
-
-
-            Files.write("\"pageTitle\",\"pageNs\",\"pageId\",\"pageRedirect\"", pagesFile, Charsets.UTF_8);
-
-            Files.append(ls, pagesFile, Charsets.UTF_8);
-            revisionsFile = new File(workingDirForFileName+"/dumps.wikimedia.org/wikidatawiki/20160701/revisions_"+ localNameOfXMLFile + ".csv");
-            Files.write("\"revId\",\"revParentid\",\"revTimestamp\",\"revMinor\",\"revComment\",\"revText\",\"revSha1\",\"revModel\",\"revFormat\",\"revContributor\",\"revPage\"", revisionsFile, Charsets.UTF_8);
-            Files.append(ls, revisionsFile, Charsets.UTF_8);
-            uploadsFile = new File(workingDirForFileName+"/dumps.wikimedia.org/wikidatawiki/20160701/uploads_" + localNameOfXMLFile + ".csv");
-            Files.write("\"upTimestamp\",\"upComment\",\"upFileName\",\"upSrc\",\"upSize\",\"upPage\",\"upContributor\"", uploadsFile, Charsets.UTF_8);
-            Files.append(ls, uploadsFile, Charsets.UTF_8);
-            contributorsFile = new File(workingDirForFileName+"/dumps.wikimedia.org/wikidatawiki/20160701/contributors_"+ localNameOfXMLFile + ".csv");
-            Files.write("\"contribId\",\"contribUsername\",\"contribIp\"", contributorsFile, Charsets.UTF_8);
-            Files.append(ls, contributorsFile, Charsets.UTF_8);
-
-
-            */
-
 
 
             workingDirForFileName = "/data/ubuntu";
@@ -274,69 +221,25 @@ public class WikidataPageHistoryReader extends DefaultHandler {
             // write the header
             listWriterP.writeHeader(headerP);
 
-            // Files.write("pageTitle\ttpageNs\tpageId\tpageRedirect", pagesFile, Charsets.UTF_8);
-           // Files.append(ls, pagesFile, Charsets.UTF_8);
+           
             revisionsFile = new File(workingDirForFileName+"/dumps.wikimedia.org/wikidatawiki/20160701/revisions_"+ localNameOfXMLFile + ".csv");
             listWriterR = new CsvListWriter(new FileWriter(revisionsFile),new CsvPreference.Builder('"', '\t', "\n").build());
                     //CsvPreference.TAB_PREFERENCE);
             final String[] headerR = new String[] {"revId", "revParentid", "revTimestamp", "revMinor", "revComment", "revText", "revSha1", "revModel", "revFormat", "revContributor", "revPage"};
             // write the header
             listWriterR.writeHeader(headerR);
-            //Files.write("revId\trevParentid\trevTimestamp\trevMinor\trevComment\trevText\trevSha1\trevModel\trevFormat\trevContributor\trevPage", revisionsFile, Charsets.UTF_8);
-           // Files.append(ls, revisionsFile, Charsets.UTF_8);
+          
             uploadsFile = new File(workingDirForFileName+"/dumps.wikimedia.org/wikidatawiki/20160701/uploads_" + localNameOfXMLFile + ".csv");
-           // Files.write("upTimestamp\tupComment\tupFileName\tupSrc\tupSize\tupPage\tupContributor", uploadsFile, Charsets.UTF_8);
-           // Files.append(ls, uploadsFile, Charsets.UTF_8);
             contributorsFile = new File(workingDirForFileName+"/dumps.wikimedia.org/wikidatawiki/20160701/contributors_"+ localNameOfXMLFile + ".csv");
             listWriterC = new CsvListWriter(new FileWriter(contributorsFile),new CsvPreference.Builder('"', '\t', "\n").build());
                    // CsvPreference.TAB_PREFERENCE);
             final String[] headerC = new String[] {"contribId", "contribUsername", "contribIp"};
             // write the header
             listWriterC.writeHeader(headerC);
-           // Files.write("contribId\tcontribUsername\tcontribIp", contributorsFile, Charsets.UTF_8);
-           // Files.append(ls, contributorsFile, Charsets.UTF_8);
+  
 
 
-            /*
-            pagesFile = new File(workingDirForFileName+"/src/main/resources/pages_" + localNameOfXMLFile + ".csv");
-
-            Files.write("pageTitle\ttpageNs\tpageId\tpageRedirect", pagesFile, Charsets.UTF_8);
-            Files.append(ls, pagesFile, Charsets.UTF_8);
-            revisionsFile = new File(workingDirForFileName+"/src/main/resources/revisions_"+ localNameOfXMLFile + ".csv");
-            Files.write("revId\trevParentid\trevTimestamp\trevMinor\trevComment\trevText\trevSha1\trevModel\trevFormat\trevContributor\trevPage", revisionsFile, Charsets.UTF_8);
-            Files.append(ls, revisionsFile, Charsets.UTF_8);
-            uploadsFile = new File(workingDirForFileName+"/src/main/resources/uploads_" + localNameOfXMLFile + ".csv");
-            Files.write("upTimestamp\tupComment\tupFileName\tupSrc\tupSize\tupPage\tupContributor", uploadsFile, Charsets.UTF_8);
-            Files.append(ls, uploadsFile, Charsets.UTF_8);
-            contributorsFile = new File(workingDirForFileName+"/src/main/resources/contributors_"+ localNameOfXMLFile + ".csv");
-            Files.write("contribId\tcontribUsername\tcontribIp", contributorsFile, Charsets.UTF_8);
-            Files.append(ls, contributorsFile, Charsets.UTF_8);
-            */
-
-
-
-
-
-
-
-/*
-            pagesFile = new File("E:/wikidata_data/pages_" + localNameOfXMLFile + ".csv");
-           // Files.write("\"pageTitle\",\"pageNs\",\"pageId\",\"pageRedirect\",\"pageRestrictions\",\"pageDiscussion\"", pagesFile, Charsets.UTF_8);
-            Files.write("\"pageTitle\",\"pageNs\",\"pageId\"", pagesFile, Charsets.UTF_8);
-
-            Files.append(ls, pagesFile, Charsets.UTF_8);
-            revisionsFile = new File("E:/wikidata_data/revisions_"+ localNameOfXMLFile + ".csv");
-            Files.write("\"revId\",\"revParentid\",\"revTimestamp\",\"revMinor\",\"revComment\",\"revText\",\"revSha1\",\"revModel\",\"revFormat\",\"revContributor\",\"revPage\"", revisionsFile, Charsets.UTF_8);
-            Files.append(ls, revisionsFile, Charsets.UTF_8);
-            uploadsFile = new File("E:/wikidata_data/uploads_" + localNameOfXMLFile + ".csv");
-            Files.write("\"upTimestamp\",\"upComment\",\"upFileName\",\"upSrc\",\"upSize\",\"upPage\",\"upContributor\"", uploadsFile, Charsets.UTF_8);
-            Files.append(ls, uploadsFile, Charsets.UTF_8);
-            contributorsFile = new File("E:/wikidata_data/contributors_"+ localNameOfXMLFile + ".csv");
-            Files.write("\"contribId\",\"contribUsername\",\"contribIp\"", contributorsFile, Charsets.UTF_8);
-            Files.append(ls, contributorsFile, Charsets.UTF_8);
-            */
-
-
+          
 
         } catch (IOException e) {
         e.printStackTrace();
@@ -538,58 +441,7 @@ public class WikidataPageHistoryReader extends DefaultHandler {
             listWriterC.write(cleanElements, contributorsProcessors);
         }
 
-        /*//TODO: should have written with escapeCsv! to deal with ,""username"",
-        String ls = System.getProperty("line.separator");
-        try {
-
-
-            //writes header of result file
-            int count=0;
-            int last = elements.size()-1;
-            StringBuilder lineB = new StringBuilder();
-
-
-            String line=null;
-            String el=null;
-            for (String e: elements)
-            {
-
-                el = e.trim();
-
-                if(count==last)
-                {
-
-                    lineB.append(el);
-                    //line=el;
-                    //line ="\""+el+"\"";
-
-                }
-                else
-                {
-                    lineB.append(el+"\t");
-                  // line=el+"\t";
-                    //line="\""+el+"\",";
-                }
-                line = lineB.toString();
-
-
-
-
-                count++;
-
-            }
-
-
-
-
-
-            Files.append(line, file, Charsets.UTF_8);
-            Files.append(ls, file, Charsets.UTF_8);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }*/
+       
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -940,7 +792,6 @@ public class WikidataPageHistoryReader extends DefaultHandler {
                 revFormatB.append(StringEscapeUtils.unescapeXml(new String(ch, start, length)));
                 break;
             case upTimestampP:
-                //TODO when considering uploads this field also needs to get into a StringBuilder
                 upTimestamp=new String(ch, start, length);
 
                 break;
